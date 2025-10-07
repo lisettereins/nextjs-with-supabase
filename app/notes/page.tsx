@@ -5,10 +5,10 @@ import { createClient } from '@/lib/supabase/client'
 
 export default async function Page() {
 
-    const supabase = createClient()
+  const supabase = createClient()
 
     
-      const { data: notes } = await supabase.from('notes').select()
+  const { data: notes } = await supabase.from('notes').select()
       
 
 

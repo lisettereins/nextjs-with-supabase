@@ -1,6 +1,6 @@
 'use client'
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 import { useEffect, useState } from "react";
 
 export default function Page() {
@@ -10,7 +10,7 @@ export default function Page() {
 
     useEffect(() => {
         const getData = async () => {
-            const {data} = await (await supabase).from('todo').select()
+            const {data} = await supabase.from('todo').select()
             setTodos(data)
         }
         getData()
@@ -18,7 +18,7 @@ export default function Page() {
 
     return (
         <div>{todos?.map((todo) => (
-            <div key={todo.id}>{todo.title}</div>
+            <div key={todo.id}>{todo.name}</div>
         ))}</div>
     );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -11,7 +11,7 @@ export default function CreateTodoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    (await supabase).from("todo").insert({ name });
+    await supabase.from("todo").insert({ name });
     router.push("/todos");
     router.refresh();
   };

@@ -13,7 +13,10 @@ export default function CreateNotePage() {
     e.preventDefault();
     await supabase.from("notes").insert({ title });
     router.push("/notes");
+    router.refresh();
   };
+
+  
 
   return (
     <div className="mx-auto flex-col max-w-sm items-center gap-x-4 rounded-xl 

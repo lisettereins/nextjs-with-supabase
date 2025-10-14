@@ -16,8 +16,10 @@ export default async function EditNotePage({ params }: { params: { id: string } 
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Edit Note</h1>
+    <div className="mx-auto flex-col max-w-sm items-center gap-x-4 rounded-xl 
+    bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none 
+    dark:-outline-offset-1 dark:outline-white/10">
+      <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">Edit Note</h1>
       <EditNoteForm note={note} />
     </div>
   );

@@ -31,7 +31,7 @@ export default function EditNoteForm({
       <button
         type="submit"
         disabled={isPending}
-        className="bg-blue-500 text-white rounded p-2"
+        className="bg-gray-50 text-black p-2 rounded hover:bg-gray-200"
       >
         {isPending ? "Saving..." : "Save Changes"}
       </button>

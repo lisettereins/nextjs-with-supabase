@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { page } from "./actions";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { updateNote } from "./actions";
 
 export default function EditNoteForm({
   note,
@@ -9,14 +10,12 @@ export default function EditNoteForm({
   note: { id: string; title: string };
 }) {
   const [title, setTitle] = useState(note.title);
-  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    startTransition(async () => {
-      await page(note.id, title);
-      alert("Note updated!");
-    });
+    await updateNote(note.id, title);
+    router.push("/notes");
   }
 
   return (
@@ -30,10 +29,10 @@ export default function EditNoteForm({
       />
       <button
         type="submit"
-        disabled={isPending}
+        
         className="bg-gray-50 text-black p-2 rounded hover:bg-gray-200"
       >
-        {isPending ? "Saving..." : "Save Changes"}
+        Save changes
       </button>
     </form>
   );

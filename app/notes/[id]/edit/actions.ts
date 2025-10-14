@@ -1,9 +1,9 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 
 
-export async function page(noteId: string, title: string) {
+export async function updateNote(noteId: string, title: string) {
     const supabase = await createClient();
 
     const {error} = await supabase.from("notes").update({title}).eq("id", noteId);

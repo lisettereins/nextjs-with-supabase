@@ -1,14 +1,15 @@
-import { createClient } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/server";
 import EditNoteForm from "./EditNoteForm";
 import { notFound } from "next/navigation";
 
-export default async function EditNotePage({ params }: { params: { id: string } }) {
+export default async function EditNotePage({ params }: { params: Promise<{ id: string }> }) {
   const supabase = await createClient();
+  const {id} = await params;
   
   const { data: note } = await supabase
     .from("notes")
     .select("id, title")
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (!note) {

@@ -41,6 +41,9 @@ export default function Page() {
           <li key={note.id}>
             {note.title}{" "}
             <button onClick={() => handleDelete(note.id)}>🗑️</button>
+             <a href={`/notes/${note.id}/edit`}>
+              <button>Edit</button>
+            </a>
           </li>
         ))}
       </ul>

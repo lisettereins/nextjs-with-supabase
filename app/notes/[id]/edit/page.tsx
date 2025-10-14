@@ -1,15 +1,24 @@
-"use server";
+import { createClient } from "@/lib/supabase/client";
+import EditNoteForm from "./EditNoteForm";
+import { notFound } from "next/navigation";
 
-import { createClient } from "@/lib/supabase/server";
+export default async function EditNotePage({ params }: { params: { id: string } }) {
+  const supabase = await createClient();
+  
+  const { data: note } = await supabase
+    .from("notes")
+    .select("id, title")
+    .eq("id", params.id)
+    .single();
 
+  if (!note) {
+    notFound();
+  }
 
-export async function updateNote(noteId: string, title: string) {
-    const supabase = await createClient();
-
-    const {error} = await supabase.from("notes").update({title}).eq("id", noteId);
-
-    if(error) {
-        throw new Error("update failed");
-    }
-    return {success: true}
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Edit Note</h1>
+      <EditNoteForm note={note} />
+    </div>
+  );
 }

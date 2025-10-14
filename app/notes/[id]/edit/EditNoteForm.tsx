@@ -1,16 +1,20 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { updateNote } from "./page";
+import { page } from "./actions";
 
-export default function EditNoteForm({ note }: { note: { id: string; title: string } }) {
+export default function EditNoteForm({
+  note,
+}: {
+  note: { id: string; title: string };
+}) {
   const [title, setTitle] = useState(note.title);
   const [isPending, startTransition] = useTransition();
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     startTransition(async () => {
-      await updateNote(note.id, title);
+      await page(note.id, title);
       alert("Note updated!");
     });
   }

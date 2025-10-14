@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition } from "react";
-import { updateNote } from "../actions/updateNote";
+import { updateNote } from "./page";
 
 export default function EditNoteForm({ note }: { note: { id: string; title: string } }) {
   const [title, setTitle] = useState(note.title);

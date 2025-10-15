@@ -16,9 +16,9 @@ export default async function EditTodoPage({
     .eq("id", id)
     .single();
 
-    if(!todo){
-        notFound();
-    }
+  if (!todo) {
+    notFound();
+  }
 
   return (
     <div

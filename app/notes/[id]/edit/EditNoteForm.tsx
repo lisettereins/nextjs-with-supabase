@@ -29,7 +29,6 @@ export default function EditNoteForm({
       />
       <button
         type="submit"
-        
         className="bg-gray-50 text-black p-2 rounded hover:bg-gray-200"
       >
         Save changes

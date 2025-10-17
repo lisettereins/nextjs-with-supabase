@@ -27,7 +27,7 @@ export default async function EditNotePage({
     dark:-outline-offset-1 dark:outline-white/10"
     >
       <h1 className="text-3xl font-bold mb-4 text-black dark:text-white">
-        Edit Note
+        Edit note
       </h1>
       <EditNoteForm note={note} />
     </div>
